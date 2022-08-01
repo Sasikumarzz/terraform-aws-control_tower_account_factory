@@ -6,7 +6,7 @@ module "sandbox_account_01" {
 
   control_tower_parameters = {
     AccountEmail = "sasikumar.ganesan@accenture.com"
-    AccountName  = "sandbox-account-05"
+    AccountName  = "sandbox-account-03"
     # Syntax for top-level OU
     ManagedOrganizationalUnit = "Sandbox"
     # Syntax for nested OU
