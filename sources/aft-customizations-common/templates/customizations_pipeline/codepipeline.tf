@@ -52,7 +52,28 @@ resource "aws_codepipeline" "aft_codecommit_customizations_codepipeline" {
       }
     }
   }
+  ##############################################################
+  # Manual Approval
+  ############################################################
 
+  stage {
+    name = "Approval"
+
+    action {
+      name             = "Manual Approval"
+      category         = "Approval"
+      owner            = "AWS"
+      provider         = "Manual"
+      version          = "1"
+
+      configuration = {
+           
+            NotificationArn = "arn:${data_aws_partition_current_partition}:sns:${data_aws_region_current_name}:${data_aws_caller_identity_current_account_id}:aft-manual-approval-notification"
+       
+      }
+    }
+  }
+  
   ##############################################################
   # Apply-AFT-Global-Customizations
   ##############################################################
