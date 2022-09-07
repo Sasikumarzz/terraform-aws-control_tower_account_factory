@@ -70,7 +70,6 @@ resource "aws_cloudwatch_log_group" "aft_global_customizations_terraform" {
   ############################################################
 
 resource "aws_codebuild_project" "aft_global_customizations_terraform_planfile" {
-  depends_on     = [aws_cloudwatch_log_group.aft_global_customizations_terraform]
   name           = "aft-global-customizations-terraform-planfile"
   description    = "Job to plan Terraform provided by the customer global customizations repo"
   build_timeout  = tostring(var.global_codebuild_timeout)
@@ -94,17 +93,7 @@ resource "aws_codebuild_project" "aft_global_customizations_terraform_planfile" 
     }
   }
 
-  logs_config {
-    cloudwatch_logs {
-      group_name = aws_cloudwatch_log_group.aft_global_customizations_terraform.name
-    }
-
-    s3_logs {
-      status   = "ENABLED"
-      location = "${aws_s3_bucket.aft_codepipeline_customizations_bucket.id}/aft-global-customizations-terraform-logs"
-    }
-  }
-
+  
   source {
     type      = "CODEPIPELINE"
     buildspec = data.local_file.aft_global_customizations_terraform_planfile.content
