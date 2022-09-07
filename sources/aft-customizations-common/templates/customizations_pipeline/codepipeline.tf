@@ -52,6 +52,33 @@ resource "aws_codepipeline" "aft_codecommit_customizations_codepipeline" {
       }
     }
   }
+   ##############################################################
+  # Terrform Plan - Global Customization
+  ############################################################
+
+  stage {
+    name = "Terraform Plan"
+    action {
+      name            = "Terraform Plan"
+      category        = "Build"
+      owner           = "AWS"
+      provider        = "CodeBuild"
+      input_artifacts = ["source-aft-global-customizations"]
+      version         = "1"
+      run_order       = "2"
+      configuration = {
+        ProjectName = var.aft_global_customizations_terraform_codebuild_name
+        EnvironmentVariables = jsonencode([
+          {
+            name  = "VENDED_ACCOUNT_ID",
+            value = var.account_id,
+            type  = "PLAINTEXT"
+          }
+        ])
+      }
+    }
+  }
+
   ##############################################################
   # Manual Approval
   ############################################################
