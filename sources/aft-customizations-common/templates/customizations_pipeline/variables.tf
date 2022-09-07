@@ -88,3 +88,9 @@ variable "aft_global_customizations_terraform_codebuild_name" {
   description = "CodeBuild Project Name"
   default     = "aft-global-customizations-terraform"
 }
+
+variable "aft_global_customizations_terraform_plan_codebuild_name" {
+  type        = string
+  description = "CodeBuild Project Name"
+  default     = "aft-global-customizations-terraform-planfile"
+}
