@@ -29,3 +29,8 @@ data "local_file" "aft_account_customizations_terraform" {
 data "local_file" "aft_create_pipeline" {
   filename = "${path.module}/buildspecs/aft-create-pipeline.yml"
 }
+
+data "local_file" "aft_global_customizations_terraform_planfile" {
+  filename = "${path.module}/buildspecs/aft-global-customiztions-terraform-plan.yml"
+}
+
