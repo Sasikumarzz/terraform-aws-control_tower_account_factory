@@ -64,6 +64,7 @@ resource "aws_cloudwatch_log_group" "aft_global_customizations_terraform" {
   name              = "/aws/codebuild/aft-global-customizations-terraform"
   retention_in_days = var.cloudwatch_log_group_retention
 }
+
 ##############################################################
   #  AFT Global Customizations Terraform Planned file
   ############################################################
@@ -106,7 +107,7 @@ resource "aws_codebuild_project" "aft_global_customizations_terraform_planfile" 
 
   source {
     type      = "CODEPIPELINE"
-    buildspec = data.local_file.aft_global_customizations_terraform.content
+    buildspec = data.local_file.aft_global_customizations_terraform_planfile.content
   }
 
   vpc_config {
