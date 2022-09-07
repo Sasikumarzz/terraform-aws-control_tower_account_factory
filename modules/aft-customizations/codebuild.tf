@@ -64,6 +64,58 @@ resource "aws_cloudwatch_log_group" "aft_global_customizations_terraform" {
   name              = "/aws/codebuild/aft-global-customizations-terraform"
   retention_in_days = var.cloudwatch_log_group_retention
 }
+##############################################################
+  #  AFT Global Customizations Terraform Planned file
+  ############################################################
+
+resource "aws_codebuild_project" "aft_global_customizations_terraform_planfile" {
+  depends_on     = [aws_cloudwatch_log_group.aft_global_customizations_terraform]
+  name           = "aft-global-customizations-terraform-planfile"
+  description    = "Job to plan Terraform provided by the customer global customizations repo"
+  build_timeout  = tostring(var.global_codebuild_timeout)
+  service_role   = aws_iam_role.aft_codebuild_customizations_role.arn
+  encryption_key = var.aft_kms_key_arn
+
+  artifacts {
+    type = "CODEPIPELINE"
+  }
+
+  environment {
+    compute_type                = "BUILD_GENERAL1_MEDIUM"
+    image                       = "aws/codebuild/amazonlinux2-x86_64-standard:3.0"
+    type                        = "LINUX_CONTAINER"
+    image_pull_credentials_type = "CODEBUILD"
+
+    environment_variable {
+      name  = "AWS_PARTITION"
+      value = data.aws_partition.current.partition
+      type  = "PLAINTEXT"
+    }
+  }
+
+  logs_config {
+    cloudwatch_logs {
+      group_name = aws_cloudwatch_log_group.aft_global_customizations_terraform.name
+    }
+
+    s3_logs {
+      status   = "ENABLED"
+      location = "${aws_s3_bucket.aft_codepipeline_customizations_bucket.id}/aft-global-customizations-terraform-logs"
+    }
+  }
+
+  source {
+    type      = "CODEPIPELINE"
+    buildspec = data.local_file.aft_global_customizations_terraform.content
+  }
+
+  vpc_config {
+    vpc_id             = var.aft_vpc_id
+    subnets            = var.aft_vpc_private_subnets
+    security_group_ids = var.aft_vpc_default_sg
+  }
+
+}
 
 #####################################################
 # AFT Account Customizations Terraform
