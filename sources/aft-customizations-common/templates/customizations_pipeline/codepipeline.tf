@@ -67,7 +67,7 @@ resource "aws_codepipeline" "aft_codecommit_customizations_codepipeline" {
       version         = "1"
       run_order       = "2"
       configuration = {
-        ProjectName = var.aft_global_customizations_terraform_codebuild_name
+        ProjectName = var.aft_global_customizations_terraform_plan_codebuild_name
         EnvironmentVariables = jsonencode([
           {
             name  = "VENDED_ACCOUNT_ID",
