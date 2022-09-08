@@ -43,8 +43,7 @@
       ],
       "Resource": [
         "${aws_s3_bucket_aft_codepipeline_customizations_bucket_arn}",
-        "${aws_s3_bucket_aft_codepipeline_customizations_bucket_arn}/*",
-        "arn:aws:s3:::aft-terraform-planfile/*"
+        "${aws_s3_bucket_aft_codepipeline_customizations_bucket_arn}/*"
       ]
     },
     {
