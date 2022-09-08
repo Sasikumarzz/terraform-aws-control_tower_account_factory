@@ -92,6 +92,7 @@ resource "aws_codepipeline" "aft_codecommit_customizations_codepipeline" {
       owner            = "AWS"
       provider         = "Manual"
       version          = "1"
+      run_order       = "3"
 
       configuration = {
            
@@ -114,7 +115,7 @@ resource "aws_codepipeline" "aft_codecommit_customizations_codepipeline" {
       provider        = "CodeBuild"
       input_artifacts = ["source-aft-global-customizations"]
       version         = "1"
-      run_order       = "2"
+      run_order       = "4"
       configuration = {
         ProjectName = var.aft_global_customizations_terraform_codebuild_name
         EnvironmentVariables = jsonencode([
@@ -140,7 +141,7 @@ resource "aws_codepipeline" "aft_codecommit_customizations_codepipeline" {
       provider        = "CodeBuild"
       input_artifacts = ["source-aft-account-customizations"]
       version         = "1"
-      run_order       = "2"
+      run_order       = "4"
       configuration = {
         ProjectName = var.aft_account_customizations_terraform_codebuild_name
         EnvironmentVariables = jsonencode([
