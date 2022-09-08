@@ -27,3 +27,19 @@ resource "aws_s3_bucket_acl" "aft-codepipeline-customizations-bucket-acl" {
   bucket = aws_s3_bucket.aft_codepipeline_customizations_bucket.id
   acl    = "private"
 }
+
+
+resource "aws_s3_bucket" "aft_terraform_planfile" {
+  bucket = "aft-terraform-planfile"
+}
+
+resource "aws_s3_bucket_versioning" "aft-terraform-planfile-bucket-versioning" {
+  bucket = aws_s3_bucket.aft_terraform_planfile.id
+  versioning_configuration {
+    status = "Enabled"
+  }
+}
+resource "aws_s3_bucket_acl" "aft-terraform-planfile-bucket-acl" {
+  bucket = aws_s3_bucket.aft_terraform_planfile.id
+  acl    = "private"
+}
