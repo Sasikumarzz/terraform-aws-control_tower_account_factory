@@ -43,3 +43,20 @@ resource "aws_s3_bucket_acl" "aft-terraform-planfile-bucket-acl" {
   bucket = aws_s3_bucket.aft_terraform_planfile.id
   acl    = "private"
 }
+
+
+locals {
+  emails = ["sasikumar.ganesan@accenture.com"]
+}
+
+resource "aws_sns_topic" "aft-manual-approval-notification" {
+  name = "aft-manual-approval-notification"
+}
+
+resource "aws_sns_topic_subscription" "sns-subscription" {
+  count     = length(local.emails)
+  topic_arn = aws_sns_topic.aft-manual-approval-notification.arn
+  protocol  = "email"
+  endpoint  = local.emails[count.index]
+
+}
