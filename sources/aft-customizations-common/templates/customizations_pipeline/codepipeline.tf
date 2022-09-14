@@ -56,7 +56,7 @@ resource "aws_codepipeline" "aft_codecommit_customizations_codepipeline" {
   # Terrform Plan - Global Customization
   ############################################################
 
-  stage {
+  /*stage {
     name = "Terraform Plan"
     action {
       name            = "Terraform Plan"
@@ -77,13 +77,13 @@ resource "aws_codepipeline" "aft_codecommit_customizations_codepipeline" {
         ])
       }
     }
-  }
+  }*/
 
   ##############################################################
   # Manual Approval
   ############################################################
 
-  stage {
+  /*stage {
     name = "Approval"
 
     action {
@@ -100,7 +100,7 @@ resource "aws_codepipeline" "aft_codecommit_customizations_codepipeline" {
        
       }
     }
-  }
+  }*/
   
   ##############################################################
   # Apply-AFT-Global-Customizations
