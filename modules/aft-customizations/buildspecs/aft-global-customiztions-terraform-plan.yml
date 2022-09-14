@@ -1,5 +1,5 @@
 
-version: 0.2
+/*version: 0.2
 
 phases:
   install:
@@ -119,4 +119,4 @@ phases:
         fi
       - source $DEFAULT_PATH/api-helpers-venv/bin/activate
       - export AWS_PROFILE=aft-target
-      - $DEFAULT_PATH/api_helpers/post-api-helpers.sh
+      - $DEFAULT_PATH/api_helpers/post-api-helpers.sh*/
