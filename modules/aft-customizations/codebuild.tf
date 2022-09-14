@@ -69,7 +69,7 @@ resource "aws_cloudwatch_log_group" "aft_global_customizations_terraform" {
   #  AFT Global Customizations Terraform Planned file
   ############################################################
 
-resource "aws_codebuild_project" "aft_global_customizations_terraform_planfile" {
+/*resource "aws_codebuild_project" "aft_global_customizations_terraform_planfile" {
   name           = "aft-global-customizations-terraform-planfile"
   description    = "Job to plan Terraform provided by the customer global customizations repo"
   build_timeout  = tostring(var.global_codebuild_timeout)
@@ -105,7 +105,7 @@ resource "aws_codebuild_project" "aft_global_customizations_terraform_planfile" 
     security_group_ids = var.aft_vpc_default_sg
   }
 
-}
+}*/
 
 #####################################################
 # AFT Account Customizations Terraform
