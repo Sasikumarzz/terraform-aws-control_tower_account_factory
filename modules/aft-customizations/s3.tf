@@ -29,7 +29,7 @@ resource "aws_s3_bucket_acl" "aft-codepipeline-customizations-bucket-acl" {
 }
 
 
-resource "aws_s3_bucket" "aft_terraform_planfile" {
+/*resource "aws_s3_bucket" "aft_terraform_planfile" {
   bucket = "aft-terraform-planfile"
 }
 
@@ -42,10 +42,10 @@ resource "aws_s3_bucket_versioning" "aft-terraform-planfile-bucket-versioning" {
 resource "aws_s3_bucket_acl" "aft-terraform-planfile-bucket-acl" {
   bucket = aws_s3_bucket.aft_terraform_planfile.id
   acl    = "private"
-}
+}*/
 
 
-locals {
+/*locals {
   emails = ["sasikumar.ganesan@accenture.com"]
 }
 
@@ -59,4 +59,4 @@ resource "aws_sns_topic_subscription" "sns-subscription" {
   protocol  = "email"
   endpoint  = local.emails[count.index]
 
-}
+}*/
