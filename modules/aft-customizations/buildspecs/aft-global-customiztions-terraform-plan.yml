@@ -1,4 +1,4 @@
-/*
+
 version: 0.2
 
 phases:
@@ -120,4 +120,4 @@ phases:
       - source $DEFAULT_PATH/api-helpers-venv/bin/activate
       - export AWS_PROFILE=aft-target
       - $DEFAULT_PATH/api_helpers/post-api-helpers.sh
-      */
+      
