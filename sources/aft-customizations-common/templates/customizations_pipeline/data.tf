@@ -5,9 +5,9 @@ data "aws_region" "current" {}
 
 data "aws_caller_identity" "current" {}
 
-/*data "aws_sns_topic" "aft-manual-approval-notification" {
+data "aws_sns_topic" "aft-manual-approval-notification" {
   name = "aft-manual-approval-notification"
-}*/
+}
 
 
 data "aws_ssm_parameter" "aft_vcs_type" {
